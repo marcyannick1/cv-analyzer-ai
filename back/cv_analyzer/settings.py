@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
-    'accounts'
+    'accounts',
+    'jobs',
 ]
 
 REST_FRAMEWORK = {
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cv_analyzer',
         'USER': 'root',
-        'PASSWORD': 'root1234',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
