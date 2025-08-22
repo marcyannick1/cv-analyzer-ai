@@ -14,6 +14,13 @@ class Job(models.Model):
     skills = models.JSONField(null=True, blank=True)
     companyInfo = models.JSONField(null=True, blank=True)
 
+    recruiter = models.ForeignKey(
+        "accounts.User",
+        on_delete=models.CASCADE,
+        limit_choices_to={'role': 'recruiter'},
+        related_name="jobs"
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
