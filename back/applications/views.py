@@ -35,17 +35,30 @@ class ApplicationCreateView(generics.CreateAPIView):
 
         serializer.save(candidate=self.request.user, score=score_final)
 
-# ✅ Lister les candidatures (recruteur/admin)
+# ✅ Lister les candidatures avec filtres (recruteur/admin/candidat)
 class ApplicationListView(generics.ListAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
+        queryset = Application.objects.all()
+
+        # Un candidat ne peut voir que ses candidatures
         if user.role == "candidate":
-            return Application.objects.filter(candidate=user)  # un candidat voit seulement les siennes
-        return Application.objects.all()  # recruteur/admin voient toutes
+            queryset = queryset.filter(candidate=user)
+
+        # Récupérer les filtres depuis l’URL : ?job=1&candidate=2
+        job_id = self.request.query_params.get("job")
+        candidate_id = self.request.query_params.get("candidate")
+
+        if job_id:
+            queryset = queryset.filter(job_id=job_id)
+        if candidate_id:
+            queryset = queryset.filter(candidate_id=candidate_id)
+
+        return queryset
 
 # ✅ Supprimer une candidature
 class ApplicationDeleteView(generics.DestroyAPIView):
