@@ -170,7 +170,7 @@ def analyze_cv(cv_text: str, job_text: str):
         score_final = (
                               (similarite * 0.6) +  # similarité CV ↔ annonce
                               (len(competences) / 20 * 0.2) +  # diversité des compétences
-                              (1 if sentiment in ["5 stars", "4 stars"] else 0.5) * 0.1
+                              (1 if sentiment in ["5 stars", "4 stars"] else 0.5) * 0.2
                       ) * 100
 
         score_final = max(0, min(100, round(score_final, 2)))
