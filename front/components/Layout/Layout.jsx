@@ -5,6 +5,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Footer from "../../components/shared/Footer";
 import { authRoutes } from "../../data/index";
 import { usePathname } from "next/navigation";
+import '../../app/globals.css';
 
 export default function Layout({ children }) {
   const pathname = usePathname();

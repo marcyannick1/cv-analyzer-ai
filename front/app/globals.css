@@ -13,31 +13,58 @@
   width: 100%;
   height: 2.5px !important;
 }
+/* app/globals.css */
 
-textarea {
-  resize: none;
+/* Import Tailwind de base */
+
+/* === Thème JobConnect === */
+:root {
+  /* Couleurs principales */
+  --color-background: #f7f9f7;       /* fond clair */
+  --color-foreground: #1f2937;       /* texte principal (gris foncé) */
+  --color-primary: #10b981;          /* vert principal */
+  --color-muted: #6b7280;            /* texte secondaire */
+  --color-card: #ffffff;             /* fond des cartes */
+  --color-border: #e5e7eb;           /* bordures claires */
 }
 
-.loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 4px solid #076300;
-  border-right: 3px solid transparent;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+/* Background global */
+body {
+  @apply bg-[var(--color-background)] text-[var(--color-foreground)] font-sans;
 }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* Liens */
+a {
+  @apply text-[var(--color-foreground)] hover:text-[var(--color-primary)] transition-colors;
 }
 
+/* Boutons */
+button {
+  @apply rounded-md font-medium transition-colors;
+}
 
-/* NEW CSS */
+button.bg-primary {
+  @apply bg-[var(--color-primary)] text-white hover:bg-green-600;
+}
 
+button.outline {
+  @apply border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white;
+}
+
+/* Cards */
+.card {
+  @apply bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg shadow-sm p-4;
+}
+
+/* Badges */
+.badge {
+  @apply inline-block px-2 py-1 rounded-full text-xs font-semibold border border-[var(--color-primary)] text-[var(--color-primary)];
+}
+
+/* Exemples utilitaires personnalisés */
+.bg-background { background-color: var(--color-background); }
+.text-foreground { color: var(--color-foreground); }
+.text-primary { color: var(--color-primary); }
+.bg-card { background-color: var(--color-card); }
+.border-border { border-color: var(--color-border); }
+.text-muted-foreground { color: var(--color-muted); }
