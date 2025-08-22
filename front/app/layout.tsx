@@ -1,5 +1,8 @@
+
+
 import type React from "react"
 import type { Metadata } from "next"
+import './globals.css'
 import { DM_Sans } from "next/font/google"
 import "./globals.css"
 
